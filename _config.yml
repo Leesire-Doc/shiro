@@ -1,0 +1,8 @@
+title: Shiro
+description: Apache Shiro 官方文档（中文版）
+google_analytics: UA-55157705-1
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
