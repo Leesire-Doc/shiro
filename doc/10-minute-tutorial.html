@@ -81,20 +81,20 @@
 
 <p>Welcome to Apache Shiro's 10 Minute Tutoral! </p>
 
-<p>By going through this quick and simple tutorial you should fully understand how a developer uses Shiro in their
-    application. And you should be able to do it in under 10 minutes.</p>
+<p>通过快速和简单的教程，您能够充分理解一个开发者是如何将shiro应用到他们的程序中。并且您有可能在十分钟内完成。</p>
 
 <h2><a name="10MinuteTutorial-Overview"></a>Overview</h2>
 
 <p>What is Apache Shiro?</p>
 
-<p>Apache Shiro is a powerful and easy to use Java security framework that offers developers an intuitive yet
-    comprehensive solution to authentication, authorization, cryptography, and session management.</p>
+<p>Apache Shiro是一个功能强大且易于使用的java安全框架，为开发人员提供一个直观而全面的认证、授权、加密解决方案，和会话管理。</p>
 
 <p>In practical terms, it achieves to manage all facets of your application's security, while keeping out of the way as
     much as possible. It is built on sound interface-driven design and OO principles, enabling custom behavior wherever
     you can imagine it. But with sensible defaults for everything, it is as "hands off" as application security can be.
     At least that's what we strive for.</p>
+<p>实际上，它实现了对应用程序安全性的所有方面的管理，同时尽可能地避开了。
+它建立在良好的接口驱动设计和OO原则的基础上，在您可以想象的地方启用自定义行为。但对所有的东西都有合理的默认值，这就像应用程序的安全性一样“不受欢迎”。至少这是我们奋斗的目标。</p>
 
 <p>What can Apache Shiro do?</p>
 
@@ -120,6 +120,8 @@
             <td colspan="1" rowspan="1">Shiro can be run in any environment, from the simplest command line application
                 to the biggest enterprise web and clustered applications, but we'll use the simplest possible example in
                 a simple <tt>main</tt> method for this QuickStart so you can get a feel for the API.
+				<br/>Shiro可以在任何环境下运行，从最简单的命令行应用程序到最大的企业网络和集群应用程序，
+				但我们会尽可能使用最简单的例子，在一个简单的可以快速启动的main方法中以至于让你感觉在调用一个API一样。
             </td>
         </tr>
     </table>
@@ -168,8 +170,10 @@
 
 <p>The <tt>Quickstart.java</tt> file referenced above contains all the code that will get you familiar with the API. Now
     lets break it down in chunks here so you can easily understand what is going on.</p>
+<p>上面引用的<tt>Quickstart.java</tt>文件包含了所有使您熟悉API的代码。现在我们把它分解成块，这样你就可以很容易地理解发生了什么。</p>
 
 <p>In almost all environments, you can obtain the currently executing user via the following call:</p>
+<p>在几乎所有的环境中，您都可以通过以下调用获得当前执行的用户</p>
 
 <p></p>
 
@@ -181,8 +185,7 @@ Subject currentUser = SecurityUtils.getSubject();
     </div>
 </div>
 
-<p>Using <tt><a class="external-link"
-                href="static/current/apidocs/org/apache/shiro/SecurityUtils.html">SecurityUtils</a>.<a
+<p>Using <tt><a class="external-link" href="static/current/apidocs/org/apache/shiro/SecurityUtils.html">SecurityUtils</a>.<a
         class="external-link" href="static/current/apidocs/org/apache/shiro/SecurityUtils.html#getSubject()">getSubject()</a></tt>,
     we can obtain the currently executing <tt><a class="external-link"
                                                  href="static/current/apidocs/org/apache/shiro/subject/Subject.html">Subject</a></tt>.
@@ -190,6 +193,14 @@ Subject currentUser = SecurityUtils.getSubject();
     since that "just makes sense", but we decided against it: too many applications have existing APIs that already have
     their own User classes/frameworks, and we didn't want to conflict with those. Also, in the security world, the term
     <tt>Subject</tt> is actually the recognized nomenclature. Ok, moving on...</p>
+<p>使用 <tt><a class="external-link" href="static/current/apidocs/org/apache/shiro/SecurityUtils.html">SecurityUtils</a>.<a
+        class="external-link" href="static/current/apidocs/org/apache/shiro/SecurityUtils.html#getSubject()">getSubject()</a></tt>,
+    我们可以获得当前执行的 <tt><a class="external-link"
+                                                 href="static/current/apidocs/org/apache/shiro/subject/Subject.html">Subject</a></tt>.
+    A <em>Subject</em> 只是应用程序用户的特定于安全的“视图”。 
+	实际上我们想把它称为“用户”，因为它“有意义”，但是我们决定不这样称谓它：: 
+	太多的应用程序已经有已经有自己的用户类/框架的现有API，我们不想与它们发生冲突。此外，在安全领域中，术语
+    <tt>Subject</tt> 实际上是公认的术语. Ok, moving on...</p>
 
 <p>The <tt>getSubject()</tt> call in a standalone application might return a <tt>Subject</tt> based on user data in an
     application-specific location, and in a server environment (e.g. web app), it acquires the <tt>Subject</tt> based on
