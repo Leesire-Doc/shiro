@@ -63,7 +63,8 @@
 
         <div id="content">
 
-            <h1>Apache Shiro for Web Applications</h1><p>Although Apache Shiro is designed to be used to secure <em>any</em> JVM-based application, it is most commonly used to secure a web application. It greatly simplifies how you secure web applications base on simple URL pattern matching and filter chain definitions. In addition to Shiro&rsquo;s API, Shiro&rsquo;s web support includes a rich JSP tag library to control page output.</p><h2>Features</h2>
+            <h1>Web 应用程序应用 Apache Shiro</h1><p>虽然 Apache Shiro 的设计是为了用于保护（secure） <em>any</em> 基于JVM的应用程序， 当然它也经常应用于Web应用程序.
+			它极大地简化了基于简单的URL模式匹配和过滤器链定义来确保Web应用程序的安全性。除了Shiro的API，支持Shiro的网站可以包括丰富的JSP标签库来控制页面的输出。</p><h2>Features</h2>
 <table align="right" width="275" style="margin-left: 15px; margin-bottom: 20px; border-style: solid; border-width: 2px; border-color: navy" cellpadding="10px">
 
 <tr>
@@ -83,12 +84,13 @@
 </table>
 <ul>
   <li><p><strong>Simple ShiroFilter web.xml definition</strong><br/>You can enable Shiro for a web application with one simple filter definition in web.xml.</p></li>
-  <li><p><strong>Protects all URLs</strong><br/>Shiro can protect any type of web request that comes into your system. For example, dynamically generated pages, REST request, etc.</p></li>
-  <li><p><strong>Innovative Filtering (URL-specific chains)</strong><br/>Defining URL specific filter chains is much easier and more intuitive than using web.xml because, in Shiro, you can explicitly specify which filters you want to execute for each path and in what order. And with Shiro you can have path-specific configuration for each filter in that chain.</p></li>
+  <li><p><strong>Protects all URLs</strong><br/>Shiro可以保护任何类型的进入你的系统的Web请求。例如，动态生成的页面、REST请求等。</p></li>
+  <li><p><strong>创新过滤（URL特定的链）</strong><br/>具体定义URL过滤器链比使用web.xml，更容易和更直观，因为， 
+  在Shiro，你可以显式地指定你想为每个路径和顺序执行。并且Shiro可以在链中的每个路径过滤特定的配置。</p></li>
 </ul>
 <ul>
   <li><p><strong>JSP Tag support</strong><br/>The JSP tags allow you to easily control page output based on the current user&rsquo;s state and access rights.</p></li>
-  <li><p><strong>Transparent HttpSession support</strong><br/>If you are using Shiro&rsquo;s native sessions, we have implemented HTTP Session API and the Servlet 2.5 API so you don&rsquo;t have to change any of your existing web code to use Shiro.</p></li>
+  <li><p><strong>HttpSession 支持</strong><br/>如果你使用的是shiro本地session，我们已经可以实现HTTP Session API 和 Servlet 2.5 API ，所以你使用Shiro不需要改变任何现有的网页代码。</p></li>
 </ul>
 
         </div>
