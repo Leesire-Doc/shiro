@@ -63,11 +63,15 @@
 
         <div id="content">
 
-            <h1>Securing Web Applications with Apache Shiro</h1><p>This document is an introductory step-by-step tutorial to securing a web application with Apache Shiro. It assumes an introductory knowledge of Shiro, and assumes familiarity with at least the following two introductory documents:</p>
+            <h1>使用Apache Shiro保护Web应用程序</h1>
+			<p>This document is an introductory step-by-step tutorial to securing a web application with Apache Shiro. It assumes an introductory knowledge of Shiro, and assumes familiarity with at least the following two introductory documents:</p>
+			<p>本文档循序渐进的介绍使用Apache Shiro保护Web应用程序。这是Shiro的一个入门知识，并假定您熟悉至少有以下两个入门文档：</p>
 <ul>
   <li><a href="../www.infoq.com/articles/apache-shiro">Application Security with Apache Shiro</a></li>
   <li><a href="10-minute-tutorial.html">Apache Shiro 10 Minute Tutorial</a></li>
-</ul><p>This step-by-step tutorial should take ~ 45 minutes to 1 hour to complete. When you are finished, you will have a very good idea of how Shiro works in a web application.</p><h3>Table of Contents</h3>
+</ul><p>This step-by-step tutorial should take ~ 45 minutes to 1 hour to complete. When you are finished, you will have a very good idea of how Shiro works in a web application.</p>
+<p>这个循序渐进的教程需要45分钟到1小时才能完成。当你完成后，你会开始思考shiro是如何在Web应用程序中工作的。</p>
+<h3>Table of Contents</h3>
 <ul>
   <li><a href="#overview">Overview</a></li>
   <li><a href="#project-setup">Project Setup</a></li>
@@ -78,17 +82,34 @@
   <li><a href="#step5">Step 5: Allow Access to Only Authenticated Users</a></li>
   <li><a href="#step6">Step 6: Role-based Access Control</a></li>
   <li><a href="#step7">Step 7: Permission-based Access Control</a></li>
-</ul><p><a id="overview"></a></p><h2>Overview</h2><p>While Apache Shiro&rsquo;s core design goals allow it to be used to secure <em>any</em> JVM-based application, such as command line applications, server daemons, web apps, etc, this guide will focus on the most common use case: securing a web application running in a <a href="../en.wikipedia.org/wiki/Java_Servlet">Servlet</a> container, such as Tomcat or Jetty.</p><h3>Prerequisites</h3><p>The following tools are expected to be installed on your local development machine in order to follow along with this tutorial.</p>
+</ul><p><a id="overview"></a></p><h2>Overview</h2>
+<p>While Apache Shiro&rsquo;s core design goals allow it to be used to secure <em>any</em> JVM-based application, such as command line applications, server daemons, web apps, etc, this guide will focus on the most common use case: securing a web application running in a <a href="../en.wikipedia.org/wiki/Java_Servlet">Servlet</a> container, such as Tomcat or Jetty.</p><h3>Prerequisites</h3><p>The following tools are expected to be installed on your local development machine in order to follow along with this tutorial.</p>
+<p>本教程将重点放在最常见的情况：保护Web应用运行在一个servlet容器，如Tomcat和Jetty。</p>
 <ul>
   <li>Git (tested w/ 1.7)</li>
   <li>Java SDK 7</li>
   <li>Maven 3</li>
   <li>Your favorite IDE, like IntelliJ IDEA or Eclipse, or even a simple text editor to view files and make changes.</li>
-</ul><h3>Tutorial Format</h3><p>This is a step-by-step tutorial. The tutorial, and all of its steps, exist as a Git repository. When you clone the git repository, the <code>master</code> branch is your starting point. Each step in the tutorial is a separate branch. You can follow along simply by checking out the git branch that reflects the tutorial step you are reviewing.</p><h3>The Application</h3><p>The web application we will build is a super webapp that can be used as a starting point for your own application. It will demonstrate user login, logout, user-specific welcome messages, access control to certain parts of the web application, and integration with a plugglable security data store.</p><p>We will start by setting up the project, including the build tool and declaring dependencies, as well as configuring the servlet <code>web.xml</code> file to launch the web application and the Shiro environment.</p><p>Once we complete setup, we will then layer in individual pieces of functionality, including integration with a security data store, then enabling user login, logout, and access control.</p><p><a id="project-setup"></a></p><h2>Project Setup</h2><p>Instead of having to manually set up a directory structure and initial set of basic files, we&rsquo;ve done this for you in a git repository.</p><h3>1. Fork the tutorial project</h3><p>On GitHub, visit the <a href="../https@github.com/lhazlewood/apache-shiro-tutorial-webapp">tutorial project</a> and click the <code>Fork</code> button on the upper right.</p><h3>2. Clone your tutorial repository</h3><p>Now that you have forked the repository to your own GitHub account, clone it on your local machine:</p>
-<pre><code>$ git clone git@github.com:$YOUR_GITHUB_USERNAME/apache-shiro-tutorial-webapp.git    
-</code></pre><p>(where <code>$YOUR_GITHUB_USERNAME</code> is your own GitHub username of course)</p><p>You can now <code>cd</code> into the cloned directory and see the project structure:</p>
+</ul><h3>Tutorial Format</h3>
+<p>This is a step-by-step tutorial. The tutorial, and all of its steps, exist as a Git repository. When you clone the git repository, the <code>master</code> branch is your starting point. Each step in the tutorial is a separate branch. You can follow along simply by checking out the git branch that reflects the tutorial step you are reviewing.</p>
+<h3>The Application</h3>
+<p>The web application we will build is a super webapp that can be used as a starting point for your own application. It will demonstrate user login, logout, user-specific welcome messages, access control to certain parts of the web application, and integration with a plugglable security data store.</p>
+<p>We will start by setting up the project, including the build tool and declaring dependencies, as well as configuring the servlet <code>web.xml</code> file to launch the web application and the Shiro environment.</p>
+<p>Once we complete setup, we will then layer in individual pieces of functionality, including integration with a security data store, then enabling user login, logout, and access control.</p>
+<p><a id="project-setup"></a></p>
+<h2>Project Setup</h2>
+<p>Instead of having to manually set up a directory structure and initial set of basic files, we&rsquo;ve done this for you in a git repository.</p>
+<p>我们不需要手动设置目录结构和初始基本文件集，而是在Git存储库中为您完成此操作。</p>
+<h3>1. Fork the tutorial project</h3>
+<p>On GitHub, visit the <a href="../https@github.com/lhazlewood/apache-shiro-tutorial-webapp">tutorial project</a> and click the <code>Fork</code> button on the upper right.</p>
+<h3>2. Clone your tutorial repository</h3>
+<p>Now that you have forked the repository to your own GitHub account, clone it on your local machine:</p>
+<pre><code>$ git clone git@github.com:$YOUR_GITHUB_USERNAME/apache-shiro-tutorial-webapp.git</code></pre>
+<p>(where <code>$YOUR_GITHUB_USERNAME</code> is your own GitHub username of course)</p>
+<p>You can now <code>cd</code> into the cloned directory and see the project structure:</p>
 <pre><code>$ cd apache-shiro-tutorial-webapp
-</code></pre><h3>3. Review project structure</h3><p>After cloning the repo, your current <code>master</code> branch will have the following structure:</p>
+</code></pre>
+<h3>3. Review project structure</h3><p>After cloning the repo, your current <code>master</code> branch will have the following structure:</p>
 <pre><code>apache-shiro-tutorial-webapp/
   |-- src/
   |  |-- main/
